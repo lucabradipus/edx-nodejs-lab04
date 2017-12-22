@@ -1,5 +1,6 @@
 const Account = require('../models/account')
 
+
 module.exports = {
   getAccounts(req, res) {
     //retrive all or retrieve ID
@@ -15,9 +16,13 @@ module.exports = {
     //validate using mongoose
     // if (!validation.success) return res.status(406).send(validation.response)
     //create account
-    let newAccount = createAccount(req.body)
-//save and in the callback return result or error
-//     res.status(201).send({id: id})
+
+    let newAccount = new Account(req.body)
+    newAccount.save((err, account) => {
+      if (err) return res.status(406).send(err)
+      res.status(201).send(account)
+
+    })
   },
   updateAccount(req, res) {
     //validate using mongoose

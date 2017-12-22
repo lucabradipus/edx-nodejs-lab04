@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 
 const accountSchema = mongoose.Schema({
-  name: String,
+  name: {
+    type:String,
+    required: 'name is required',
+
+  },
   balance: Number
 })
 
@@ -33,5 +37,7 @@ const accountSchema = mongoose.Schema({
 // accountSchema.virtual('fullName').get(function () {
 //   return this.name.first + ' ' + this.name.last;
 // })
+
+
 
 module.exports = mongoose.model('Account', accountSchema)
