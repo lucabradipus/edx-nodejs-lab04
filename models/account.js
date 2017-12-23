@@ -6,7 +6,10 @@ const accountSchema = mongoose.Schema({
     required: 'name is required',
 
   },
-  balance: Number
+  balance: {
+    type: Number,
+    required: 'balance is required'
+  }
 })
 
 //put here

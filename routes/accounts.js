@@ -3,39 +3,45 @@ const Account = require('../models/account')
 
 module.exports = {
   getAccounts(req, res) {
-    //retrive all or retrieve ID
-    // data = util.retrievePost(req.query.postId)
-    //retrieve data
-    Account.find({}, (err, results) => {
+    const callback = (err, result) => {
       if (err) return res.status(400).send()
-      return res.status(200).send(results)
+      if (result) {
+        return res.status(200).send(result)
+      } else {
+        return res.status(404).send(result)
+      }
+    }
 
-    })
+    if (req.query.accountId) {
+      Account.findById(req.query.accountId, callback)
+    } else {
+      Account.find({}, callback)
+    }
   },
   addAccount(req, res) {
-    //validate using mongoose
-    // if (!validation.success) return res.status(406).send(validation.response)
-    //create account
-
     let newAccount = new Account(req.body)
     newAccount.save((err, account) => {
-      if (err) return res.status(406).send(err)
+      if (err) {
+        return res.status(406).send(err)
+      }
       res.status(201).send(account)
 
     })
   },
   updateAccount(req, res) {
-    //validate using mongoose
-    // if (!validation.success) return res.status(406).send(validation.response)
-    //retrive and updateAccount account
-    updateAccount(req.body)
-//save and in the callback return result or error
-    res.status(200).send(result)
+    Account.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, result) => {
+      if (err) return res.status(406).send(err)
+      res.status(200).send(result)
+
+    })
 
   },
   removeAccount(req, res) {
-    //here the code
-    res.status(204).send()
+    Account.findByIdAndRemove(req.params.id, req.body, (err, result) => {
+      if (err) return res.status(406).send(err)
+      res.status(204).send()
+
+    })
 
   }
 }
