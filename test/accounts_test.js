@@ -26,7 +26,7 @@ describe('Accounts', function () {
   });
 
   let id = 0
-  describe('POST/GET', function () {
+  describe('CREATE', function () {
     it('creates an item ', (done) => {
       const sampleAccount = {"balance": "1000", "name": "savings"}
       chai.request(server)
