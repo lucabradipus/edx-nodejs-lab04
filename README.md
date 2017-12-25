@@ -6,7 +6,7 @@ Here is the repository
 
 https://github.com/lucabradipus/edx-nodejs-lab04.git
 
-**Testing!! Testing!! Testing!!**
+**Testing with mocha and Testing with curl**
 
 after npm install you can run either
  
