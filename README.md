@@ -1,6 +1,6 @@
-# edx-nodejs-lab04
-
-Module 2 assignment lab in edX introduction to NodeJS 
+I try to write the code using TDD, but this, of course, is something that is hardly visible after!
+ 
+Anywa,y I first wrote the test in test/accounts_test, according to lab 4 requirements, and then I implemented the API.
 
 Here is the repository
 
@@ -50,6 +50,10 @@ I used mongoose schema to perform validation and I wrote a couple of test about 
 
 model is defined in models/accounts.js.
 
+**outes**
+
+routes are in routes/account.js, according to the pattern we have already used in lab 2
+
 **dependencies**
 
     * body-parser
@@ -64,4 +68,3 @@ model is defined in models/accounts.js.
     * mocha
     * node-dev
          
-
