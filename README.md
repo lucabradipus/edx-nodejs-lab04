@@ -48,10 +48,7 @@ I used mongoose schema to perform validation and I wrote a couple of test about 
 
 **Model**
 
-model is defined in models/accounts.js. I hoped to heve the oppotunity to write some advanved 
-methods ( static, virtual atc), 
-but at the end I simply defined the schema with types and requitements and used mongoose to perform 
-straightforward  CRUD Operations
+model is defined in models/accounts.js.
 
 **dependencies**
 
