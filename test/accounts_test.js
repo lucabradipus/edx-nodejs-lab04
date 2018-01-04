@@ -185,6 +185,23 @@ describe('Accounts', function () {
           })
 
     })
-  })
+    it('returns an http 404 when tries to delete a not existing account', done => {
+      chai.request(server)
+          .delete(`/accounts/5a4deb17a35a42922acc29ed`)
+          .end((err, res) => {
+            expect(res.status).to.equal(404);
+            done()
+          })
+    })
+    it('returns an http 406 when tries to delete with a not valid object ID', done => {
+      chai.request(server)
+          .delete(`/accounts/999`)
+          .end((err, res) => {
+            expect(res.status).to.equal(406);
+            done()
 
+          })
+    })
+
+  })
 })
