@@ -6,6 +6,8 @@ module.exports = {
     const callback = (err, result) => {
       if (err) return res.status(400).send()
       if (result) {
+        console.log(result)
+        console.log(result.authorFullName)
         return res.status(200).send(result)
       } else {
         return res.status(404).send(result)
@@ -37,9 +39,12 @@ module.exports = {
 
   },
   removeAccount(req, res) {
-    Account.findByIdAndRemove(req.params.id, req.body, (err, result) => {
+    Account.findByIdAndRemove(req.params.id, (err, result) => {
       if (err) return res.status(406).send(err)
-      res.status(204).send()
+      if (result === null)
+        return res.status(404).send()
+      else
+        return res.status(204).send()
 
     })
 

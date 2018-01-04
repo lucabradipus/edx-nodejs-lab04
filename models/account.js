@@ -9,8 +9,24 @@ const accountSchema = mongoose.Schema({
   balance: {
     type: Number,
     required: 'balance is required'
-  }
+  },
+  author: {
+    firstName : String,
+    lastName : String,
+    myobj: mongoose.Schema.Types.Mixed
+}
+
 })
+
+
+// console.log("__dirname",__dirname)
+accountSchema.virtual('authorFullName')
+    .get(function(){
+      if (this.author && this.author.firstName && this.author.lastName)
+        return `${this.author.firstName}  ${this.author.lastName}`
+      else return 'N/A'
+    })
+
 
 
 

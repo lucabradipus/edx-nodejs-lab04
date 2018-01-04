@@ -28,7 +28,11 @@ describe('Accounts', function () {
   let id = 0
   describe('CREATE', function () {
     it('creates an item ', (done) => {
-      const sampleAccount = {"balance": "1000", "name": "savings"}
+      const sampleAccount = {
+        "balance": "1000",
+        "name": "savings",
+        "author": {"firstName": "luca", "lastName": "Terzaroli"}
+      }
       chai.request(server)
           .post('/accounts')
           .send(sampleAccount)
@@ -141,7 +145,12 @@ describe('Accounts', function () {
           })
     })
     it('returns a specific item', (done) => {
-      const sampleAccount = {"balance": "1001", "name": "savings"}
+      // const sampleAccount = {"balance": "1001", "name": "savings"}
+      const sampleAccount = {
+        "balance": "1001",
+        "name": "savings",
+        "author": {"firstName": "luca", "lastName": "Terzaroli"}
+      }
       chai.request(server)
           .post('/accounts')
           .send(sampleAccount)
@@ -178,13 +187,32 @@ describe('Accounts', function () {
                       .get(`/accounts?accountId=${id}`)
                       .end((err, res) => {
                         expect(res.status).to.equal(404);
+                        console.log('check deletion')
                         done()
                       })
 
                 })
           })
+      // chai.request(server)
+      //     .delete(`/accounts/999`)
+      //     .end((err, res) => {
+      //       expect(res.status).to.equal(406);
+      //       done()
+      //
+      //     })
+
 
     })
+    it('returns an http 404 when tries to delete a not existing account', done => {
+      chai.request(server)
+          .delete(`/accounts/5a4deb17a35a42922acc29ed`)
+          .end((err, res) => {
+            expect(res.status).to.equal(404);
+            console.log('delete again')
+            done()
+          })
+    })
+
   })
 
 })
