@@ -2,7 +2,7 @@ const config = require('./_config');
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
-const routes = require('./routes/index')
+const routes = require('./routes')
 const errorhandler = require('errorhandler')
 var notifier = require('node-notifier')
 
@@ -31,7 +31,7 @@ app.use('/', routes);
 
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost:27017/edx-course-db', {useMongoClient: true})
+mongoose.connect(config.mongoURI[app.settings.env], {useMongoClient:true})
 const server = app.listen(config.port[app.settings.env])
 
 module.exports =  server // for testing

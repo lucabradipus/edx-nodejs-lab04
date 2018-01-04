@@ -6,8 +6,6 @@ module.exports = {
     const callback = (err, result) => {
       if (err) return res.status(400).send()
       if (result) {
-        console.log(result)
-        console.log(result.authorFullName)
         return res.status(200).send(result)
       } else {
         return res.status(404).send(result)
